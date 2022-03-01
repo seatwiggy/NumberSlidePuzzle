@@ -1,5 +1,7 @@
 package edu.neumont.csc150.models;
 
+import java.util.Random;
+
 public class Board {
     Square[][] board;
     Difficulty difficulty;
@@ -28,39 +30,35 @@ public class Board {
     }
 
     public void shuffle() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 100; i++) {
             for (int row = 0; row < size; row++) {
                 for (int col = 0; col < size; col++) {
-                    int holdLastRow = 0;
-                    int holdLastCol = 0;
-                    soutBoard();
-                    if (holdLastCol == col && holdLastRow == row) {
-                        break;
-                    } else {
-                        if (col != 0 && board[row][col - 1].getValue() == 0) {
-                            board[row][col - 1].setValue(board[row][col].getValue());
-                            board[row][col].setValue(0);
-                            holdLastRow = row;
-                            holdLastCol = col - 1;
-                            break;
-                        } else if (col != 2 && board[row][col + 1].getValue() == 0) {
-                            board[row][col + 1].setValue(board[row][col].getValue());
-                            board[row][col].setValue(0);
-                            holdLastRow = row;
-                            holdLastCol = col + 1;
-                            break;
-                        } else if (row != 0 && board[row - 1][col].getValue() == 0) {
-                            board[row - 1][col].setValue(board[row][col].getValue());
-                            board[row][col].setValue(0);
-                            holdLastRow = row - 1;
-                            holdLastCol = col;
-                            break;
-                        } else if (row != 2 && board[row + 1][col].getValue() == 0) {
-                            board[row + 1][col].setValue(board[row][col].getValue());
-                            board[row][col].setValue(0);
-                            holdLastRow = row + 1;
-                            holdLastCol = col;
-                            break;
+                    if (board[row][col].getValue() == 0) {
+                        Random randy = new Random();
+                        switch (randy.nextInt(4)) {
+                            case 0:
+                                if (col != 0) {
+                                    board[row][col].setValue(board[row][col - 1].getValue());
+                                    board[row][col - 1].setValue(0);
+                                    break;
+                                }
+                            case 1:
+                                if (col != size-1) {
+                                    board[row][col].setValue(board[row][col + 1].getValue());
+                                    board[row][col + 1].setValue(0);
+                                    break;
+                                }
+                            case 2:
+                                if (row != 0) {
+                                    board[row][col].setValue(board[row - 1][col].getValue());
+                                    board[row - 1][col].setValue(0);
+                                    break;
+                                }
+                            case 3:
+                                if (row != size-1) {
+                                    board[row][col].setValue(board[row + 1][col].getValue());
+                                    board[row + 1][col].setValue(0);
+                                }
                         }
                     }
                 }

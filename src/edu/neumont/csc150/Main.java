@@ -7,7 +7,5 @@ import edu.neumont.csc150.models.Difficulty;
 public class Main {
 	public static void main(String[] args) {
 		new PuzzleController().run();
-		Board testing = new Board(Difficulty.easy);
-		testing.checkingToSeeIfThingsWork();
 	}
 }
