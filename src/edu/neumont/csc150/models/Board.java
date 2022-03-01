@@ -28,7 +28,6 @@ public class Board {
         board[size - 1][size - 1] = 0;
     }
 
-
     public void shuffle() {
         for (int i = 0; i < 100; i++) {
             for (int row = 0; row < size; row++) {
@@ -66,6 +65,11 @@ public class Board {
         }
     }
 
+    public void moveValues(int row1, int col1, int row2, int col2){
+        int temp = board[row1][col1];
+        board[row1][col1] = board[row2][col2];
+        board[row2][col2] = board[row1][col1];
+    }
 
     public Difficulty getDifficulty() {
         return difficulty;
