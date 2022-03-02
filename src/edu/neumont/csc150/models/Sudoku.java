@@ -6,6 +6,7 @@ public class Sudoku implements IGame{
     Random randy = new Random();
     Board gameBoard;
     Board solution;
+    int startingAmountOfNumbers;
 
     @Override
     public void setUpBoard() {
@@ -14,31 +15,32 @@ public class Sudoku implements IGame{
 
     @Override
     public void setUpGame(Difficulty difficulty) {
-        gameBoard = new Board(difficulty);
-        solution = new Board(difficulty);
+        gameBoard = new Board();
+        solution = new Board();
         gameBoard.setSize(9);
         solution.setSize(9);
+        switch (difficulty){
+            case easy -> startingAmountOfNumbers = 60;
+            case medium -> startingAmountOfNumbers = 50;
+            case hard -> startingAmountOfNumbers = 30;
+        }
+        setUpBoard();
     }
 
     @Override
     public boolean checkForWin() {
         int checkForWin = 0;
-        int emptySpaces = 0;
         for (int row = 0; row < gameBoard.getSize(); row++) {
             for (int col = 0; col < gameBoard.getSize(); col++) {
                 if (gameBoard.board[row][col]==0) {
                     checkForWin++;
-                    emptySpaces++;
                 } else if (gameBoard.board[row][col] != solution.board[row][col]) {
                         checkForWin++;
                     }
 
             }
         }
-        if (checkForWin == 0) {
-            return true;
-        }
-        return false;
+        return checkForWin == 0;
     }
 
     public void generateSudokuBoard() {
@@ -48,7 +50,7 @@ public class Sudoku implements IGame{
                 solution.board[i][j]=0;
             }
         }
-        for (int i = 0; i < (randy.nextInt(40) + 7); i++) {
+        for (int i = 0; i < (startingAmountOfNumbers); i++) {
             int newNum = randy.nextInt(9) + 1;
             int row = randy.nextInt(8) + 1;
             int col = randy.nextInt(8) + 1;
@@ -70,28 +72,29 @@ public class Sudoku implements IGame{
     }
     //checks to make sure the number that is going to be placed is safe for the row
     private boolean safeNumberForRow(int rowNum, int enteredNum) {
-        int num = 0;
+        boolean isInRow = false;
         for (int i = 0; i < 9; i++) {
             if (gameBoard.board[rowNum][i] == enteredNum||solution.board[rowNum][i] == enteredNum) {
-                num++;
-                if (num == 1) {
-                    return false;
-                }
+                isInRow = true;
+            }
+            if (isInRow) {
+                return false;
             }
 
 
         }
         return true;
     }
-    //checks to make sure the number that is going to be placed is safe for the collum
-    private boolean safeNumberForCollum(int colNum, int enteredNum) {
-        int num = 0;
+    //checks to make sure the number that is going to be placed is safe for the column
+    private boolean safeNumberForColumn(int colNum, int enteredNum) {
+        boolean isInCol = false;
         for (int i = 0; i < 9; i++) {
             if (gameBoard.board[i][colNum] == enteredNum||solution.board[i][colNum] == enteredNum) {
-                num++;
-                if (num == 1) {
-                    return false;
-                }
+                isInCol = true;
+
+            }
+            if (isInCol) {
+                return false;
             }
         }
         return true;
@@ -118,9 +121,9 @@ public class Sudoku implements IGame{
 
         return true;
     }
-    //checks to make sure the number that is going to be placed is safe for the row, collum and, square
+    //checks to make sure the number that is going to be placed is safe for the row, column and, square
     private boolean isOk(int row,int col, int num){
-        return safeForSquare(row,col,num)&&safeNumberForCollum(col,num)&&safeNumberForRow(row,num);
+        return safeForSquare(row,col,num)&& safeNumberForColumn(col,num)&&safeNumberForRow(row,num);
     }
     //generate the solution board through iteration
     public boolean solve(){

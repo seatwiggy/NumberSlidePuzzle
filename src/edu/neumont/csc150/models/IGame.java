@@ -6,4 +6,5 @@ public interface IGame {
     public void setUpGame(Difficulty difficulty);
 
     public boolean checkForWin();
+
 }

@@ -5,7 +5,7 @@ import java.util.Random;
 public class NumberPuzzle implements IGame{
     Board gameBoard;
     public void setUpGame(Difficulty difficulty) {
-        gameBoard = new Board(difficulty);
+        gameBoard = new Board();
         switch (difficulty) {
             case easy -> gameBoard.setSize(3);
             case medium -> gameBoard.setSize(5);
@@ -85,6 +85,6 @@ public class NumberPuzzle implements IGame{
     public void moveValues(int row1, int col1, int row2, int col2){
         int temp = gameBoard.board[row1][col1];
         gameBoard.board[row1][col1] = gameBoard.board[row2][col2];
-        gameBoard.board[row2][col2] = gameBoard.board[row1][col1];
+        gameBoard.board[row2][col2] = temp;
     }
 }

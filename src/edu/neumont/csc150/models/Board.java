@@ -1,23 +1,10 @@
 package edu.neumont.csc150.models;
 
-import java.util.Random;
 
 public class Board {
     protected int[][] board;
-    private Difficulty difficulty;
     private int size;
 
-    public Board(Difficulty difficulty) {
-        setDifficulty(difficulty);
-    }
-
-    public Difficulty getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
-    }
 
     public int getSize() {
         return size;
