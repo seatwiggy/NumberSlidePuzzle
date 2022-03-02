@@ -42,8 +42,8 @@ public class NumberPuzzle implements IGame{
         return incorrectPieces == 0;
     }
 
-    public void getBoard(){
-        gameBoard.getBoard();
+    public Board getBoard(){
+         return gameBoard;
     }
 
 

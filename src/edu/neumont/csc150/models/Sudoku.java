@@ -50,8 +50,8 @@ public class Sudoku implements IGame{
         return checkForWin == 0;
     }
 
-    public void getBoard(){
-        gameBoard.getBoard();
+    public Board getBoard(){
+        return gameBoard;
     }
 
     /**
