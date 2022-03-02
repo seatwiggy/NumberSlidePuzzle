@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Sudoku implements IGame{
     Random randy = new Random();
-    Board gameBoard;
-    Board solution;
+    private Board gameBoard;
+    private Board solution;
     /**
      * the number of numbers that the sudoku board begins with, it is determined by the difficulty selected
      */
