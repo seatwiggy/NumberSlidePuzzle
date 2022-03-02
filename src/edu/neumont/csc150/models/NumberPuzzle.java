@@ -82,6 +82,13 @@ public class NumberPuzzle implements IGame{
         }
     }
 
+    /**
+     * swaps the values of to spots in the board
+     * @param row1 row of the first value to be swapped
+     * @param col1 column of the first value to be swapped
+     * @param row2 row of the second value to be swapped
+     * @param col2 column of the second value to be swapped
+     */
     public void moveValues(int row1, int col1, int row2, int col2){
         int temp = gameBoard.board[row1][col1];
         gameBoard.board[row1][col1] = gameBoard.board[row2][col2];

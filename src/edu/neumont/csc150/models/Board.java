@@ -5,7 +5,6 @@ public class Board {
     protected int[][] board;
     private int size;
 
-
     public int getSize() {
         return size;
     }

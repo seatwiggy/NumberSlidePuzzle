@@ -6,6 +6,9 @@ public class Sudoku implements IGame{
     Random randy = new Random();
     Board gameBoard;
     Board solution;
+    /**
+     * the number of numbers that the sudoku board begins with, it is determined by the difficulty selected
+     */
     int startingAmountOfNumbers;
 
     @Override
@@ -47,6 +50,9 @@ public class Sudoku implements IGame{
         return checkForWin == 0;
     }
 
+    /**
+     * makes a Sudoku board with random numbers in it, could be unsolvable, run the solve method to check
+     */
     public void generateSudokuBoard() {
         for (int i = 0; i < gameBoard.board.length; i++) {
             for (int j = 0; j < gameBoard.board.length; j++) {
@@ -129,7 +135,11 @@ public class Sudoku implements IGame{
     private boolean isOk(int row,int col, int num){
         return safeForSquare(row,col,num)&& safeNumberForColumn(col,num)&&safeNumberForRow(row,num);
     }
-    //generate the solution board through iteration
+
+    /**
+     * solves the sudoku and store the answer in another board will return false if the board is unsolvable
+     * @return returns true if the board could be solved
+     */
     public boolean solve(){
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {

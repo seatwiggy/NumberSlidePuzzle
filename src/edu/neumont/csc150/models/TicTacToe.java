@@ -2,6 +2,9 @@ package edu.neumont.csc150.models;
 
 public class TicTacToe implements IGame {
     Board gameBoard;
+    /**
+     * if true and playing against the bot the player has on, if true and playing against another person the person playing X has won
+     */
     private boolean playerWins = false;
     private boolean tie = false;
 
@@ -23,6 +26,18 @@ public class TicTacToe implements IGame {
         setUpBoard();
     }
 
+    /**
+     * passes the information from the ui to the Tic Tac Toe game board
+     * @param a spot [0,0] in the matrix
+     * @param b spot [0,1] in the matrix
+     * @param c spot [0,2] in the matrix
+     * @param d spot [1,0] in the matrix
+     * @param e spot [1,1] in the matrix
+     * @param f spot [1,2] in the matrix
+     * @param g spot [2,0] in the matrix
+     * @param h spot [2,1] in the matrix
+     * @param k spot [2,2] in the matrix
+     */
     public void updateBoard(int a, int b, int c, int d, int e, int f, int g, int h, int k) {
         gameBoard.board[0][0] = a;
         gameBoard.board[0][1] = b;
@@ -73,6 +88,9 @@ public class TicTacToe implements IGame {
         return false;
     }
 
+    /**
+     * makes the AI take a turn and place a 2 somewhere on the gameBoard
+     */
     public void botsTurn() {
         int played = 0;
         for (int i = 0; i < 3; i++) {
