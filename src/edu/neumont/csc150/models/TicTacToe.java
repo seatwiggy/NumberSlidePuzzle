@@ -1,7 +1,7 @@
 package edu.neumont.csc150.models;
 
 public class TicTacToe implements IGame {
-    Board gameBoard;
+    private Board gameBoard;
     /**
      * if true and playing against the bot the player has on, if true and playing against another person the person playing X has won
      */
