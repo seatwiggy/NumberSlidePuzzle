@@ -10,7 +10,11 @@ public class Sudoku implements IGame{
 
     @Override
     public void setUpBoard() {
-    generateSudokuBoard();
+        boolean loop = false;
+    do {
+        generateSudokuBoard();
+        loop = solve();
+    }while (!loop);
     }
 
     @Override
