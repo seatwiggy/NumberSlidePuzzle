@@ -28,6 +28,20 @@ public class NumberPuzzle extends Game{
     }
 
     public boolean checkForWin(){
+        int num = 1;
+        int incorrectPieces =0;
+        for (int row = 0; row < gameBoard.getSize(); row++) {
+            for (int col = 0; col < gameBoard.getSize(); col++) {
+                if(!(gameBoard.board[row][col] == num)){
+                    incorrectPieces++;
+                }
+                gameBoard.board[row][col] = num;
+                num++;
+            }
+        }
+        if(incorrectPieces==0){
+            return true;
+        }
         return false;
     }
 
