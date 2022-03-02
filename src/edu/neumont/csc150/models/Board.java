@@ -1,27 +1,19 @@
 package edu.neumont.csc150.models;
 
+
 public class Board {
-	protected int[][] board;
-	private Difficulty difficulty;
-	private int size;
+    protected int[][] board;
+    private int size;
 
-	public Board(Difficulty difficulty) {
-		setDifficulty(difficulty);
-	}
+    public int getSize() {
+        return size;
+    }
 
-	public Difficulty getDifficulty() {
-		return difficulty;
-	}
+    public void setSize(int size) {
+        this.size = size;
+    }
 
-	public void setDifficulty(Difficulty difficulty) {
-		this.difficulty = difficulty;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
+    public int[][] getBoard() {
+        return board;
+    }
 }
