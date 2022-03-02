@@ -1,9 +1,9 @@
 package edu.neumont.csc150.models;
 
-public class TicTacToe extends Game {
-    Board gameBoard;
-    boolean playerWins = false;
-    boolean tie = false;
+public class TicTacToe implements IGame {
+     Board gameBoard;
+    private boolean playerWins = false;
+    private boolean tie = false;
 
     @Override
     public void setUpBoard() {
@@ -372,4 +372,11 @@ public class TicTacToe extends Game {
         }
     }
 
+    public boolean isPlayerWins() {
+        return playerWins;
+    }
+
+    public boolean isTie() {
+        return tie;
+    }
 }

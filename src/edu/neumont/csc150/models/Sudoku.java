@@ -2,7 +2,7 @@ package edu.neumont.csc150.models;
 
 import java.util.Random;
 
-public class Sudoku extends Game{
+public class Sudoku implements IGame{
     Random randy = new Random();
     Board gameBoard;
     Board solution;

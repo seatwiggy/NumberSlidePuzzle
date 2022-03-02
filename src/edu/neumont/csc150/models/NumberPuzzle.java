@@ -2,7 +2,7 @@ package edu.neumont.csc150.models;
 
 import java.util.Random;
 
-public class NumberPuzzle extends Game{
+public class NumberPuzzle implements IGame{
     Board gameBoard;
     public void setUpGame(Difficulty difficulty) {
         gameBoard = new Board(difficulty);
