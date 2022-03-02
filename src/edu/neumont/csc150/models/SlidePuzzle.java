@@ -2,7 +2,7 @@ package edu.neumont.csc150.models;
 
 import java.util.Random;
 
-public class NumberPuzzle extends Game{
+public class SlidePuzzle implements IGame{
     Board gameBoard;
     public void setUpGame(Difficulty difficulty) {
         gameBoard = new Board(difficulty);
@@ -39,10 +39,7 @@ public class NumberPuzzle extends Game{
                 num++;
             }
         }
-        if(incorrectPieces==0){
-            return true;
-        }
-        return false;
+        return incorrectPieces == 0;
     }
 
     public void shuffle() {

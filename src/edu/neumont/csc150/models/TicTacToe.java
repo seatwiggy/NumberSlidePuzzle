@@ -1,6 +1,6 @@
 package edu.neumont.csc150.models;
 
-public class TicTacToe extends Game {
+public class TicTacToe implements IGame {
     Board gameBoard;
     boolean playerWins = false;
     boolean tie = false;

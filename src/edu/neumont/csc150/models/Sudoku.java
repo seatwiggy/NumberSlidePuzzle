@@ -2,7 +2,7 @@ package edu.neumont.csc150.models;
 
 import java.util.Random;
 
-public class Sudoku extends Game{
+public class Sudoku implements IGame{
     Random randy = new Random();
     Board gameBoard;
     Board solution;
@@ -35,10 +35,7 @@ public class Sudoku extends Game{
 
             }
         }
-        if (checkForWin == 0) {
-            return true;
-        }
-        return false;
+        return checkForWin == 0;
     }
 
     public void generateSudokuBoard() {
