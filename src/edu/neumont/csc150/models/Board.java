@@ -12,4 +12,8 @@ public class Board {
     public void setSize(int size) {
         this.size = size;
     }
+
+    public int[][] getBoard() {
+        return board;a
+    }
 }

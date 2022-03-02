@@ -28,6 +28,7 @@ public class TicTacToe implements IGame {
 
     /**
      * passes the information from the ui to the Tic Tac Toe game board
+     *
      * @param a spot [0,0] in the matrix
      * @param b spot [0,1] in the matrix
      * @param c spot [0,2] in the matrix
@@ -88,259 +89,263 @@ public class TicTacToe implements IGame {
         return false;
     }
 
+    public void getBoard(){
+        gameBoard.getBoard();
+    }
+
+
     /**
      * makes the AI take a turn and place a 2 somewhere on the gameBoard
      */
     public void botsTurn() {
-        int played = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (played == 0) {
-                    if (i == 0 && j == 0) {
-                        if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j + 1] == 2 && gameBoard.board[i + 2][j + 2] == 0) {
-                            gameBoard.board[i + 2][j + 2] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 2][j + 2] == 2 && gameBoard.board[i + 1][j + 1] == 0) {
-                            gameBoard.board[i + 1][j + 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 0) {
-                            gameBoard.board[i + 2][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j + 2] == 0) {
-                            gameBoard.board[i][j + 2] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j + 2] == 2) {
-                            gameBoard.board[i][j + 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i + 2][j] == 2) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j + 2] == 2) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 2) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j + 1] == 1 && gameBoard.board[i + 2][j + 2] == 0) {
-                            gameBoard.board[i + 2][j + 2] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 2][j + 2] == 1 && gameBoard.board[i + 1][j + 1] == 0) {
-                            gameBoard.board[i + 1][j + 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i + 2][j] == 0) {
-                            gameBoard.board[i + 2][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j + 2] == 0) {
-                            gameBoard.board[i][j + 2] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j + 2] == 1) {
-                            gameBoard.board[i][j + 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i + 2][j] == 1) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j + 2] == 1) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i + 2][j] == 1) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        }
-                    } else if (i == 0) {
-                        if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 0) {
-                            gameBoard.board[i + 2][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 2) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i + 2][j] == 2) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i + 2][j] == 0) {
-                            gameBoard.board[i + 2][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i + 2][j] == 1) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i + 2][j] == 1) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        }
-                    } else if (j == 0) {
-                        if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j + 2] == 0) {
-                            gameBoard.board[i][j + 2] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j + 2] == 2) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j + 2] == 0) {
-                            gameBoard.board[i][j + 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j + 2] == 0) {
-                            gameBoard.board[i][j + 2] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j + 2] == 1) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j + 2] == 1) {
-                            gameBoard.board[i][j + 1] = 2;
-                            played++;
-                        }
-                    } else if (i == 1 && j == 1) {
-                        if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i - 1][j] == 2) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i - 1][j] == 2) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i - 1][j] == 0) {
-                            gameBoard.board[i - 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j - 1] == 2) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j - 1] == 2) {
-                            gameBoard.board[i][j + 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j - 1] == 0) {
-                            gameBoard.board[i][j - 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i - 1][j] == 1) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i - 1][j] == 1) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i - 1][j] == 0) {
-                            gameBoard.board[i - 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j - 1] == 1) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j - 1] == 1) {
-                            gameBoard.board[i][j + 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j - 1] == 0) {
-                            gameBoard.board[i][j - 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i - 1][j + 1] == 1 && gameBoard.board[i + 1][j - 1] == 0) {
-                            gameBoard.board[i + 1][j - 1] = 2;
-                            played++;
-                        }
-                    } else if (i == 1) {
-                        if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i - 1][j] == 2) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i - 1][j] == 2) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i - 1][j] == 0) {
-                            gameBoard.board[i - 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i - 1][j] == 0) {
-                            gameBoard.board[i - 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i - 1][j] == 1) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i - 1][j] == 1) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        }
 
-                    } else if (j == 1) {
-                        if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j - 1] == 2) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j - 1] == 2) {
-                            gameBoard.board[i][j + 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j - 1] == 0) {
-                            gameBoard.board[i][j - 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j - 1] == 1) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j - 1] == 1) {
-                            gameBoard.board[i][j + 1] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j - 1] == 0) {
-                            gameBoard.board[i][j - 1] = 2;
-                            played++;
-                        }
-                    } else if (i == 2) {
-                        if (gameBoard.board[i][j] == 2 && gameBoard.board[i - 1][j] == 2 && gameBoard.board[i - 2][j] == 0) {
-                            gameBoard.board[i - 2][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i - 1][j] == 2 && !(gameBoard.board[i - 2][j] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i - 1][j] == 1 && gameBoard.board[i - 2][j] == 0) {
-                            gameBoard.board[i - 2][j] = 2;
-                            played++;
-                        }
-                    } else if (i == 0) {
-                        if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && !(gameBoard.board[i][j + 2] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 2] == 2 && !(gameBoard.board[i][j + 1] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && !(gameBoard.board[i + 2][j] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 0 && !(gameBoard.board[i][j] == 1)) {
-                            gameBoard.board[i + 2][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 2][j] == 2 && !(gameBoard.board[i + 1][j] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && !(gameBoard.board[i + 2][j] == 1)) {
-                            gameBoard.board[i + 1][j] = 2;
-                            played++;
-                        }
-                    } else if (i == 1) {
-                        if (gameBoard.board[i][j] == 0 && gameBoard.board[i - 1][j] == 2 && !(gameBoard.board[i + 1][j] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && !(gameBoard.board[i - 1][j] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        }
-                    } else if (j == 1) {
-                        if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j - 1] == 2 && !(gameBoard.board[i][j + 1] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && !(gameBoard.board[i][j - 1] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        }
-                    } else if (i == 2) {
-                        if (gameBoard.board[i - 1][j] == 2 && gameBoard.board[i - 2][j] == 0 && !(gameBoard.board[i][j] == 1)) {
-                            gameBoard.board[i - 2][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i - 2][j] == 2 && !(gameBoard.board[i - 1][j] == 1)) {
-                            gameBoard.board[i][j] = 2;
-                            played++;
-                        } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i - 1][j] == 0 && !(gameBoard.board[i - 2][j] == 1)) {
-                            gameBoard.board[i - 1][j] = 2;
-                            played++;
-                        }
-                    } else if (gameBoard.board[1][1] == 1 && gameBoard.board[0][2] == 0) {
-                        gameBoard.board[0][2] = 2;
-                        played++;
+                if (i == 0 && j == 0) {
+                    if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j + 1] == 2 && gameBoard.board[i + 2][j + 2] == 0) {
+                        gameBoard.board[i + 2][j + 2] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 2][j + 2] == 2 && gameBoard.board[i + 1][j + 1] == 0) {
+                        gameBoard.board[i + 1][j + 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 0) {
+                        gameBoard.board[i + 2][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j + 2] == 0) {
+                        gameBoard.board[i][j + 2] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j + 2] == 2) {
+                        gameBoard.board[i][j + 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i + 2][j] == 2) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j + 2] == 2) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 2) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j + 1] == 1 && gameBoard.board[i + 2][j + 2] == 0) {
+                        gameBoard.board[i + 2][j + 2] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 2][j + 2] == 1 && gameBoard.board[i + 1][j + 1] == 0) {
+                        gameBoard.board[i + 1][j + 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i + 2][j] == 0) {
+                        gameBoard.board[i + 2][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j + 2] == 0) {
+                        gameBoard.board[i][j + 2] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j + 2] == 1) {
+                        gameBoard.board[i][j + 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i + 2][j] == 1) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j + 2] == 1) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i + 2][j] == 1) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    }
+                } else if (i == 0) {
+                    if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 0) {
+                        gameBoard.board[i + 2][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 2) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i + 2][j] == 2) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i + 2][j] == 0) {
+                        gameBoard.board[i + 2][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i + 2][j] == 1) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i + 2][j] == 1) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    }
+                } else if (j == 0) {
+                    if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j + 2] == 0) {
+                        gameBoard.board[i][j + 2] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j + 2] == 2) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j + 2] == 0) {
+                        gameBoard.board[i][j + 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j + 2] == 0) {
+                        gameBoard.board[i][j + 2] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j + 2] == 1) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j + 2] == 1) {
+                        gameBoard.board[i][j + 1] = 2;
+                        return;
+                    }
+                } else if (i == 1 && j == 1) {
+                    if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i - 1][j] == 2) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i - 1][j] == 2) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i - 1][j] == 0) {
+                        gameBoard.board[i - 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j - 1] == 2) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j - 1] == 2) {
+                        gameBoard.board[i][j + 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j - 1] == 0) {
+                        gameBoard.board[i][j - 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i - 1][j] == 1) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i - 1][j] == 1) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i - 1][j] == 0) {
+                        gameBoard.board[i - 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j - 1] == 1) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j - 1] == 1) {
+                        gameBoard.board[i][j + 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j - 1] == 0) {
+                        gameBoard.board[i][j - 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i - 1][j + 1] == 1 && gameBoard.board[i + 1][j - 1] == 0) {
+                        gameBoard.board[i + 1][j - 1] = 2;
+                        return;
+                    }
+                } else if (i == 1) {
+                    if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i - 1][j] == 2) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i - 1][j] == 2) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 2 && gameBoard.board[i - 1][j] == 0) {
+                        gameBoard.board[i - 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i - 1][j] == 0) {
+                        gameBoard.board[i - 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i + 1][j] == 0 && gameBoard.board[i - 1][j] == 1) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 1 && gameBoard.board[i - 1][j] == 1) {
+                        gameBoard.board[i][j] = 2;
+                        return;
                     }
 
+                } else if (j == 1) {
+                    if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j - 1] == 2) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j - 1] == 2) {
+                        gameBoard.board[i][j + 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i][j + 1] == 2 && gameBoard.board[i][j - 1] == 0) {
+                        gameBoard.board[i][j - 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j - 1] == 1) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 0 && gameBoard.board[i][j - 1] == 1) {
+                        gameBoard.board[i][j + 1] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i][j + 1] == 1 && gameBoard.board[i][j - 1] == 0) {
+                        gameBoard.board[i][j - 1] = 2;
+                        return;
+                    }
+                } else if (i == 2) {
+                    if (gameBoard.board[i][j] == 2 && gameBoard.board[i - 1][j] == 2 && gameBoard.board[i - 2][j] == 0) {
+                        gameBoard.board[i - 2][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i - 1][j] == 2 && !(gameBoard.board[i - 2][j] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 1 && gameBoard.board[i - 1][j] == 1 && gameBoard.board[i - 2][j] == 0) {
+                        gameBoard.board[i - 2][j] = 2;
+                        return;
+                    }
+                } else if (i == 0) {
+                    if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && !(gameBoard.board[i][j + 2] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 2] == 2 && !(gameBoard.board[i][j + 1] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && !(gameBoard.board[i + 2][j] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i + 1][j] == 2 && gameBoard.board[i + 2][j] == 0 && !(gameBoard.board[i][j] == 1)) {
+                        gameBoard.board[i + 2][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 2][j] == 2 && !(gameBoard.board[i + 1][j] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i + 1][j] == 0 && !(gameBoard.board[i + 2][j] == 1)) {
+                        gameBoard.board[i + 1][j] = 2;
+                        return;
+                    }
+                } else if (i == 1) {
+                    if (gameBoard.board[i][j] == 0 && gameBoard.board[i - 1][j] == 2 && !(gameBoard.board[i + 1][j] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i + 1][j] == 2 && !(gameBoard.board[i - 1][j] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    }
+                } else if (j == 1) {
+                    if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j - 1] == 2 && !(gameBoard.board[i][j + 1] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i][j + 1] == 2 && !(gameBoard.board[i][j - 1] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    }
+                } else if (i == 2) {
+                    if (gameBoard.board[i - 1][j] == 2 && gameBoard.board[i - 2][j] == 0 && !(gameBoard.board[i][j] == 1)) {
+                        gameBoard.board[i - 2][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 0 && gameBoard.board[i - 2][j] == 2 && !(gameBoard.board[i - 1][j] == 1)) {
+                        gameBoard.board[i][j] = 2;
+                        return;
+                    } else if (gameBoard.board[i][j] == 2 && gameBoard.board[i - 1][j] == 0 && !(gameBoard.board[i - 2][j] == 1)) {
+                        gameBoard.board[i - 1][j] = 2;
+                        return;
+                    }
+                } else if (gameBoard.board[1][1] == 1 && gameBoard.board[0][2] == 0) {
+                    gameBoard.board[0][2] = 2;
+                    return;
                 }
+
+
             }
         }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (played == 0 && gameBoard.board[i][j] == 0) {
+                if (gameBoard.board[i][j] == 0) {
                     gameBoard.board[i][j] = 2;
-                    played++;
+                    return;
                 }
             }
         }

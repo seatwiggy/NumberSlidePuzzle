@@ -50,6 +50,10 @@ public class Sudoku implements IGame{
         return checkForWin == 0;
     }
 
+    public void getBoard(){
+        gameBoard.getBoard();
+    }
+
     /**
      * makes a Sudoku board with random numbers in it, could be unsolvable, run the solve method to check
      */

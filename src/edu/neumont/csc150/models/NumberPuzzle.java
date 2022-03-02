@@ -42,6 +42,11 @@ public class NumberPuzzle implements IGame{
         return incorrectPieces == 0;
     }
 
+    public void getBoard(){
+        gameBoard.getBoard();
+    }
+
+
     /**
      * rearranges the values on the board so the game can be played
      */
