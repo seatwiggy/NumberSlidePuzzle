@@ -89,8 +89,8 @@ public class TicTacToe implements IGame {
         return false;
     }
 
-    public void getBoard(){
-        gameBoard.getBoard();
+    public Board getBoard(){
+        return gameBoard;
     }
 
 

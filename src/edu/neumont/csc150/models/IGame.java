@@ -7,4 +7,6 @@ public interface IGame {
 
     public boolean checkForWin();
 
+    public Board getBoard();
+
 }
