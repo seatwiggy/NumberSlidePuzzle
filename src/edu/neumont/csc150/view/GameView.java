@@ -22,7 +22,7 @@ public class GameView {
 	}
 
 	private void mainMenu() {
-		mainMenuPanel.setSize(frame.getWidth(), frame.getHeight());
+		mainMenuPanel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 
 		JLabel titleLabel = new JLabel("What game would you like to play?", SwingConstants.CENTER);
 		titleLabel.setFont(font);
@@ -77,17 +77,27 @@ public class GameView {
 	}
 
 	public void showMainMenu() {
-		frame.removeAll();
-		for (Component component : mainMenuPanel.getComponents()) {
-			frame.add(component);
-		}
+		frame.getContentPane().removeAll();
+		frame.add(mainMenuPanel);
+		frame.revalidate();
+		frame.repaint();
 	}
 
 	public void showDifficultyMenu() {
-		frame.removeAll();
+		frame.getContentPane().removeAll();
+		frame.add(difficultyMenuPanel);
+		frame.revalidate();
+		frame.repaint();
+	}
+
+	public ArrayList<JButton> getDifficultyMenuButtons() {
+		ArrayList<JButton> buttons = new ArrayList<>();
 		for (Component component : difficultyMenuPanel.getComponents()) {
-			frame.add(component);
+			if (component instanceof JButton) {
+				buttons.add((JButton) component);
+			}
 		}
+		return buttons;
 	}
 
 	public ArrayList<JButton> getMainMenuButtons() {
