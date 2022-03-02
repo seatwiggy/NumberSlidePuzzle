@@ -39,12 +39,12 @@ public class NumberPuzzle implements IGame{
                 num++;
             }
         }
-        if(incorrectPieces==0){
-            return true;
-        }
-        return false;
+        return incorrectPieces == 0;
     }
 
+    /**
+     * rearranges the values on the board so the game can be played
+     */
     public void shuffle() {
         for (int i = 0; i < 100; i++) {
             for (int row = 0; row < gameBoard.getSize(); row++) {
