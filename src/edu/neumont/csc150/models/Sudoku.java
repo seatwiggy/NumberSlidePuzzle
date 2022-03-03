@@ -95,7 +95,13 @@ public class Sudoku implements IGame {
 
     }
 
-    //checks to make sure the number that is going to be placed is safe for the row
+
+    /**
+     * checks to make sure the number that is going to be placed is safe for the row
+     * @param rowNum the row to be checked
+     * @param enteredNum the number that is being checked for
+     * @return true if the number can be placed in the row
+     */
     private boolean safeNumberForRow(int rowNum, int enteredNum) {
         boolean isInRow = false;
         for (int i = 0; i < 9; i++) {
@@ -111,7 +117,13 @@ public class Sudoku implements IGame {
         return true;
     }
 
-    //checks to make sure the number that is going to be placed is safe for the column
+
+    /**
+     * checks to make sure the number that is going to be placed is safe for the column
+     * @param colNum the column to be checked
+     * @param enteredNum the number that is being checked for
+     * @return true if the number can be placed in the column
+     */
     private boolean safeNumberForColumn(int colNum, int enteredNum) {
         boolean isInCol = false;
         for (int i = 0; i < 9; i++) {
@@ -126,7 +138,14 @@ public class Sudoku implements IGame {
         return true;
     }
 
-    //checks to make sure the number that is going to be placed is safe for the square
+
+    /**
+     * checks to make sure the number that is going to be placed is safe for the square
+     * @param rowNum row the number may be placed in
+     * @param colNum column the number may be placed in
+     * @param enteredNum num being checked for
+     * @return true if the number can be placed in the square
+     */
     private boolean safeForSquare(int rowNum, int colNum, int enteredNum) {
         int row = rowNum % 3;
         int col = colNum % 3;
@@ -149,7 +168,14 @@ public class Sudoku implements IGame {
         return true;
     }
 
-    //checks to make sure the number that is going to be placed is safe for the row, column and, square
+
+    /**
+     * checks to make sure the number that is going to be placed is safe for the row, column and, square
+     * @param row row the number may be placed in
+     * @param col column the number may be placed in
+     * @param num number to be placed
+     * @return true if the number can be placed
+     */
     private boolean isOk(int row, int col, int num) {
         return safeForSquare(row, col, num) && safeNumberForColumn(col, num) && safeNumberForRow(row, num);
     }
