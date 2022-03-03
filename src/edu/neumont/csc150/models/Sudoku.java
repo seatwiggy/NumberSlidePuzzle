@@ -41,8 +41,8 @@ public class Sudoku implements IGame {
     @Override
     public boolean checkForWin() {
         int checkForWin = 0;
-        for (int row = 0; row < gameBoard.getSize(); row++) {
-            for (int col = 0; col < gameBoard.getSize(); col++) {
+        for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
+            for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
                 if (gameBoard.board[row][col] == 0) {
                     checkForWin++;
                 } else if (gameBoard.board[row][col] != solution.board[row][col]) {
