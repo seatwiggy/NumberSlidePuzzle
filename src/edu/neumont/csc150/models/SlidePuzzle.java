@@ -6,7 +6,7 @@ public class SlidePuzzle implements IGame {
 	Board gameBoard;
 
 	public void setUpGame(Difficulty difficulty) {
-		gameBoard = new Board(difficulty);
+		gameBoard = new Board();
 		switch (difficulty) {
 			case EASY -> gameBoard.setSize(3);
 			case MEDIUM -> gameBoard.setSize(5);

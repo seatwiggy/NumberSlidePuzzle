@@ -8,31 +8,38 @@ public class NumberPuzzle implements IGame {
     public void setUpGame(Difficulty difficulty) {
         gameBoard = new Board();
         switch (difficulty) {
-            case EASY -> gameBoard.setSize(3);
-            case MEDIUM -> gameBoard.setSize(5);
-            case HARD -> gameBoard.setSize(7);
+            case EASY:
+                gameBoard.setNumberOfRows(3);
+                gameBoard.setGetNumberOfColumns(3);
+                break;
+            case MEDIUM:
+                gameBoard.setNumberOfRows(5);
+                gameBoard.setGetNumberOfColumns(5);
+            case HARD:
+                gameBoard.setNumberOfRows(7);
+                gameBoard.setGetNumberOfColumns(7);
         }
         setUpBoard();
         shuffle();
     }
 
     public void setUpBoard() {
-        gameBoard.board = new int[gameBoard.getSize()][gameBoard.getSize()];
+        gameBoard.board = new int[gameBoard.getNumberOfRows()][gameBoard.getNumberOfColumns()];
         int num = 1;
-        for (int row = 0; row < gameBoard.getSize(); row++) {
-            for (int col = 0; col < gameBoard.getSize(); col++) {
+        for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
+            for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
                 gameBoard.board[row][col] = num;
                 num++;
             }
         }
-        gameBoard.board[gameBoard.getSize() - 1][gameBoard.getSize() - 1] = 0;
+        gameBoard.board[gameBoard.getNumberOfRows() - 1][gameBoard.getNumberOfColumns() - 1] = 0;
     }
 
     public boolean checkForWin() {
         int num = 1;
         int incorrectPieces = 0;
-        for (int row = 0; row < gameBoard.getSize(); row++) {
-            for (int col = 0; col < gameBoard.getSize(); col++) {
+        for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
+            for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
                 if (!(gameBoard.board[row][col] == num)) {
                     incorrectPieces++;
                 }
@@ -52,8 +59,8 @@ public class NumberPuzzle implements IGame {
      */
     public void shuffle() {
         for (int i = 0; i < 100; i++) {
-            for (int row = 0; row < gameBoard.getSize(); row++) {
-                for (int col = 0; col < gameBoard.getSize(); col++) {
+            for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
+                for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
                     if (gameBoard.board[row][col] == 0) {
                         Random randy = new Random();
                         switch (randy.nextInt(4)) {
@@ -64,7 +71,7 @@ public class NumberPuzzle implements IGame {
                                     break;
                                 }
                             case 1:
-                                if (col != gameBoard.getSize() - 1) {
+                                if (col != gameBoard.getNumberOfColumns() - 1) {
                                     gameBoard.board[row][col] = gameBoard.board[row][col + 1];
                                     gameBoard.board[row][col + 1] = 0;
                                     break;
@@ -76,7 +83,7 @@ public class NumberPuzzle implements IGame {
                                     break;
                                 }
                             case 3:
-                                if (row != gameBoard.getSize() - 1) {
+                                if (row != gameBoard.getNumberOfRows() - 1) {
                                     gameBoard.board[row][col] = gameBoard.board[row + 1][col];
                                     gameBoard.board[row + 1][col] = 0;
                                 }
