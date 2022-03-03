@@ -2,7 +2,7 @@ package edu.neumont.csc150.models;
 
 import java.util.Random;
 
-public class Sudoku implements IGame{
+public class Sudoku implements IGame {
     Random randy = new Random();
     private Board gameBoard;
     private Board solution;
@@ -14,10 +14,10 @@ public class Sudoku implements IGame{
     @Override
     public void setUpBoard() {
         boolean loop = false;
-    do {
-        generateSudokuBoard();
-        loop = solve();
-    }while (!loop);
+        do {
+            generateSudokuBoard();
+            loop = solve();
+        } while (!loop);
     }
 
     @Override
@@ -26,10 +26,10 @@ public class Sudoku implements IGame{
         solution = new Board();
         gameBoard.setSize(9);
         solution.setSize(9);
-        switch (difficulty){
-            case easy -> startingAmountOfNumbers = 60;
-            case medium -> startingAmountOfNumbers = 50;
-            case hard -> startingAmountOfNumbers = 30;
+        switch (difficulty) {
+            case EASY -> startingAmountOfNumbers = 60;
+            case MEDIUM -> startingAmountOfNumbers = 50;
+            case HARD -> startingAmountOfNumbers = 30;
         }
         setUpBoard();
     }
@@ -39,18 +39,28 @@ public class Sudoku implements IGame{
         int checkForWin = 0;
         for (int row = 0; row < gameBoard.getSize(); row++) {
             for (int col = 0; col < gameBoard.getSize(); col++) {
-                if (gameBoard.board[row][col]==0) {
+                if (gameBoard.board[row][col] == 0) {
                     checkForWin++;
                 } else if (gameBoard.board[row][col] != solution.board[row][col]) {
-                        checkForWin++;
-                    }
+                    checkForWin++;
+                }
 
             }
         }
         return checkForWin == 0;
     }
 
-    public Board getBoard(){
+    /**
+     * puts a number into the game board
+     * @param row row that the number should be placed in
+     * @param col column that the number should be placed in
+     * @param value number to be placed
+     */
+    public void placeNum(int row, int col, int value){
+        gameBoard.board[row][col] = value;
+    }
+
+    public Board getBoard() {
         return gameBoard;
     }
 
@@ -61,7 +71,7 @@ public class Sudoku implements IGame{
         for (int i = 0; i < gameBoard.board.length; i++) {
             for (int j = 0; j < gameBoard.board.length; j++) {
                 gameBoard.board[i][j] = 0;
-                solution.board[i][j]=0;
+                solution.board[i][j] = 0;
             }
         }
         for (int i = 0; i < (startingAmountOfNumbers); i++) {
@@ -69,9 +79,9 @@ public class Sudoku implements IGame{
             int row = randy.nextInt(8) + 1;
             int col = randy.nextInt(8) + 1;
 
-            if (isOk(row,col,newNum)) {
+            if (isOk(row, col, newNum)) {
                 gameBoard.board[row][col] = newNum;
-            }else{
+            } else {
                 i--;
             }
         }
@@ -84,11 +94,12 @@ public class Sudoku implements IGame{
         solve();
 
     }
+
     //checks to make sure the number that is going to be placed is safe for the row
     private boolean safeNumberForRow(int rowNum, int enteredNum) {
         boolean isInRow = false;
         for (int i = 0; i < 9; i++) {
-            if (gameBoard.board[rowNum][i] == enteredNum||solution.board[rowNum][i] == enteredNum) {
+            if (gameBoard.board[rowNum][i] == enteredNum || solution.board[rowNum][i] == enteredNum) {
                 isInRow = true;
             }
             if (isInRow) {
@@ -99,11 +110,12 @@ public class Sudoku implements IGame{
         }
         return true;
     }
+
     //checks to make sure the number that is going to be placed is safe for the column
     private boolean safeNumberForColumn(int colNum, int enteredNum) {
         boolean isInCol = false;
         for (int i = 0; i < 9; i++) {
-            if (gameBoard.board[i][colNum] == enteredNum||solution.board[i][colNum] == enteredNum) {
+            if (gameBoard.board[i][colNum] == enteredNum || solution.board[i][colNum] == enteredNum) {
                 isInCol = true;
 
             }
@@ -113,6 +125,7 @@ public class Sudoku implements IGame{
         }
         return true;
     }
+
     //checks to make sure the number that is going to be placed is safe for the square
     private boolean safeForSquare(int rowNum, int colNum, int enteredNum) {
         int row = rowNum % 3;
@@ -124,7 +137,7 @@ public class Sudoku implements IGame{
                 if (top + i == rowNum && farLeft + j == colNum) {
                     continue;
                 } else {
-                    if (gameBoard.board[top + i][farLeft + j] == enteredNum||solution.board[top + i][farLeft + j] == enteredNum) {
+                    if (gameBoard.board[top + i][farLeft + j] == enteredNum || solution.board[top + i][farLeft + j] == enteredNum) {
                         return false;
                     }
 
@@ -135,26 +148,28 @@ public class Sudoku implements IGame{
 
         return true;
     }
+
     //checks to make sure the number that is going to be placed is safe for the row, column and, square
-    private boolean isOk(int row,int col, int num){
-        return safeForSquare(row,col,num)&& safeNumberForColumn(col,num)&&safeNumberForRow(row,num);
+    private boolean isOk(int row, int col, int num) {
+        return safeForSquare(row, col, num) && safeNumberForColumn(col, num) && safeNumberForRow(row, num);
     }
 
     /**
      * solves the sudoku and store the answer in another board will return false if the board is unsolvable
+     *
      * @return returns true if the board could be solved
      */
-    public boolean solve(){
+    public boolean solve() {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                if(solution.board[row][col]==0){
+                if (solution.board[row][col] == 0) {
                     for (int number = 1; number <= 9; number++) {
-                        if(isOk(row,col,number)){
-                            solution.board[row][col]=number;
-                            if(solve()){
+                        if (isOk(row, col, number)) {
+                            solution.board[row][col] = number;
+                            if (solve()) {
                                 return true;
-                            }else{
-                                solution.board[row][col]=0;
+                            } else {
+                                solution.board[row][col] = 0;
                             }
                         }
                     }

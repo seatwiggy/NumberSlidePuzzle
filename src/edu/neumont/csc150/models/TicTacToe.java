@@ -26,32 +26,6 @@ public class TicTacToe implements IGame {
         setUpBoard();
     }
 
-    /**
-     * passes the information from the ui to the Tic Tac Toe game board
-     *
-     * @param a spot [0,0] in the matrix
-     * @param b spot [0,1] in the matrix
-     * @param c spot [0,2] in the matrix
-     * @param d spot [1,0] in the matrix
-     * @param e spot [1,1] in the matrix
-     * @param f spot [1,2] in the matrix
-     * @param g spot [2,0] in the matrix
-     * @param h spot [2,1] in the matrix
-     * @param k spot [2,2] in the matrix
-     */
-    public void updateBoard(int a, int b, int c, int d, int e, int f, int g, int h, int k) {
-        gameBoard.board[0][0] = a;
-        gameBoard.board[0][1] = b;
-        gameBoard.board[0][2] = c;
-        gameBoard.board[1][0] = d;
-        gameBoard.board[1][1] = e;
-        gameBoard.board[1][2] = f;
-        gameBoard.board[2][0] = g;
-        gameBoard.board[2][1] = h;
-        gameBoard.board[2][2] = k;
-
-    }
-
     @Override
     public boolean checkForWin() {
         int player = 0;
@@ -89,7 +63,33 @@ public class TicTacToe implements IGame {
         return false;
     }
 
-    public Board getBoard(){
+    /**
+     * passes the information from the ui to the Tic Tac Toe game board
+     *
+     * @param a spot [0,0] in the matrix
+     * @param b spot [0,1] in the matrix
+     * @param c spot [0,2] in the matrix
+     * @param d spot [1,0] in the matrix
+     * @param e spot [1,1] in the matrix
+     * @param f spot [1,2] in the matrix
+     * @param g spot [2,0] in the matrix
+     * @param h spot [2,1] in the matrix
+     * @param k spot [2,2] in the matrix
+     */
+    public void updateBoard(int a, int b, int c, int d, int e, int f, int g, int h, int k) {
+        gameBoard.board[0][0] = a;
+        gameBoard.board[0][1] = b;
+        gameBoard.board[0][2] = c;
+        gameBoard.board[1][0] = d;
+        gameBoard.board[1][1] = e;
+        gameBoard.board[1][2] = f;
+        gameBoard.board[2][0] = g;
+        gameBoard.board[2][1] = h;
+        gameBoard.board[2][2] = k;
+
+    }
+
+    public Board getBoard() {
         return gameBoard;
     }
 

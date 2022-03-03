@@ -1,12 +1,12 @@
 package edu.neumont.csc150.models;
 
 public interface IGame {
-    public void setUpBoard();
+    void setUpBoard();
 
-    public void setUpGame(Difficulty difficulty);
+    void setUpGame(Difficulty difficulty);
 
-    public boolean checkForWin();
+    boolean checkForWin();
 
-    public Board getBoard();
+    Board getBoard();
 
 }
