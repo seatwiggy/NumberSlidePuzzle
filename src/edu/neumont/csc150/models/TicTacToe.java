@@ -20,7 +20,9 @@ public class TicTacToe implements IGame {
     @Override
     public void setUpGame(Difficulty difficulty) {
         gameBoard = new Board();
-        gameBoard.setSize(3);
+        gameBoard.setNumberOfRows(3);
+        gameBoard.setGetNumberOfColumns(3);
+        gameBoard.board = new int[gameBoard.getNumberOfRows()][gameBoard.getNumberOfColumns()];
         playerWins = false;
         tie = false;
         setUpBoard();
@@ -30,8 +32,8 @@ public class TicTacToe implements IGame {
     public boolean checkForWin() {
         int player = 0;
         int bot = 0;
-        for (int row = 0; row < gameBoard.getSize(); row++) {
-            for (int col = 0; col < gameBoard.getSize(); col++) {
+        for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
+            for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
                 if (gameBoard.board[row][col] == 1) {
                     player++;
                     bot = 0;

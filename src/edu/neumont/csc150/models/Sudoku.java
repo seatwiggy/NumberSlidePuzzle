@@ -24,8 +24,12 @@ public class Sudoku implements IGame {
     public void setUpGame(Difficulty difficulty) {
         gameBoard = new Board();
         solution = new Board();
-        gameBoard.setSize(9);
-        solution.setSize(9);
+        gameBoard.setNumberOfRows(9);
+        gameBoard.setGetNumberOfColumns(9);
+        solution.setNumberOfRows(9);
+        solution.setGetNumberOfColumns(9);
+        gameBoard.board = new int[gameBoard.getNumberOfRows()][gameBoard.getNumberOfColumns()];
+        solution.board = new int[solution.getNumberOfRows()][solution.getNumberOfColumns()];
         switch (difficulty) {
             case EASY -> startingAmountOfNumbers = 60;
             case MEDIUM -> startingAmountOfNumbers = 50;
@@ -37,8 +41,8 @@ public class Sudoku implements IGame {
     @Override
     public boolean checkForWin() {
         int checkForWin = 0;
-        for (int row = 0; row < gameBoard.getSize(); row++) {
-            for (int col = 0; col < gameBoard.getSize(); col++) {
+        for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
+            for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
                 if (gameBoard.board[row][col] == 0) {
                     checkForWin++;
                 } else if (gameBoard.board[row][col] != solution.board[row][col]) {
