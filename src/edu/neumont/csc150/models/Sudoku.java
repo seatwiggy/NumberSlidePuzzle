@@ -91,9 +91,7 @@ public class Sudoku implements IGame {
         }
 
         for (int i = 0; i < solution.board.length; i++) {
-            for (int j = 0; j < solution.board.length; j++) {
-                solution.board[i][j] = gameBoard.board[i][j];
-            }
+            System.arraycopy(gameBoard.board[i], 0, solution.board[i], 0, solution.board.length);
         }
         solve();
 

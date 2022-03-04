@@ -20,11 +20,11 @@ public class GameView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
-		mainMenu();
-		difficultyMenu();
+		setUpMainMenuPanel();
+		setUpDifficultyMenuPanel();
 	}
 
-	private void mainMenu() {
+	private void setUpMainMenuPanel() {
 		mainMenuPanel.setSize(frame.getWidth(), frame.getHeight());
 
 		JLabel titleLabel = new JLabel("What game would you like to play?", SwingConstants.CENTER);
@@ -52,7 +52,7 @@ public class GameView {
 		mainMenuPanel.add(ticTacToeButton);
 	}
 
-	private void difficultyMenu() {
+	private void setUpDifficultyMenuPanel() {
 		difficultyMenuPanel.setSize(frame.getWidth(), frame.getHeight());
 
 		JLabel titleLabel = new JLabel("Choose a difficulty", SwingConstants.CENTER);
@@ -80,24 +80,70 @@ public class GameView {
 		difficultyMenuPanel.add(hardButton);
 	}
 
-	private void slidePuzzlePanel() {
+	private void placeButtons(JPanel panel) {
+		int buttonWidth = (panel.getWidth() / board[0].length) - 10;
+		int buttonHeight = ((panel.getHeight() - panel.getComponent(0).getY() - panel.getComponent(0).getHeight()) / board.length) - 10;
+		for (int row = 0; row < board.length; row++) {
+			for (int column = 0; column < board[row].length; column++) {
+				JButton square = board[row][column];
+				square.setSize(buttonWidth, buttonHeight);
+				if (row == 0 && column == 0) {
+					square.setLocation(5, panel.getComponent(0).getY() + panel.getComponent(0).getHeight() + 10);
+				} else if (row == 0) {
+					square.setLocation(board[row][column - 1].getX() + board[row][column - 1].getWidth() + 5, panel.getComponent(0).getY() + panel.getComponent(0).getHeight() + 10);
+				} else if (column == 0) {
+					square.setLocation(5, board[row - 1][column].getY() + board[row - 1][column].getHeight() + 5);
+				} else {
+					square.setLocation(board[row][column - 1].getX() + board[row][column - 1].getWidth() + 5, board[row - 1][column].getY() + board[row - 1][column].getHeight() + 5);
+				}
+				panel.add(square);
+			}
+		}
+	}
+
+	private void setUpSlidePuzzlePanel() {
 		slidePuzzlePanel.setSize(frame.getWidth(), frame.getHeight());
 
-		JLabel title = new JLabel("Number Slide Puzzle");
-		title.setFont(font);
-		title.setSize(200, 30);
-		title.setLocation((slidePuzzlePanel.getWidth() / 2) - (title.getWidth() / 2), 10);
-		slidePuzzlePanel.add(title);
+		JLabel titleLabel = new JLabel("Number Slide Puzzle", SwingConstants.CENTER);
+		titleLabel.setFont(font);
+		titleLabel.setSize(200, 30);
+		titleLabel.setLocation((slidePuzzlePanel.getWidth() / 2) - (titleLabel.getWidth() / 2), 10);
+		slidePuzzlePanel.add(titleLabel);
 
-		placeButtons(title);
+		placeButtons(slidePuzzlePanel);
 	}
 
-	private void ticTacToePanel() {
+	private void setUpTicTacToePanel() {
 		ticTacToePanel.setSize(frame.getWidth(), frame.getHeight());
+
+		JLabel titleLabel = new JLabel("Tic Tac Toe", SwingConstants.CENTER);
+		titleLabel.setFont(font);
+		titleLabel.setSize(200, 30);
+		titleLabel.setLocation((ticTacToePanel.getWidth() / 2) - (titleLabel.getWidth() / 2), 10);
+		ticTacToePanel.add(titleLabel);
+
+		placeButtons(ticTacToePanel);
 	}
 
-	private void sudokuPanel() {
+	private void setUpSudokuPanel() {
 		sudokuPanel.setSize(frame.getWidth(), frame.getHeight());
+
+		JLabel titleLabel = new JLabel("Sudoku", SwingConstants.CENTER);
+		titleLabel.setFont(font);
+		titleLabel.setSize(70, 30);
+		titleLabel.setLocation((sudokuPanel.getWidth() / 2) - (titleLabel.getWidth() / 2), 10);
+		sudokuPanel.add(titleLabel);
+
+		placeButtons(sudokuPanel);
+	}
+
+	public void setUpBoard(int rows, int columns) {
+		board = new JButton[rows][columns];
+		for (int row = 0; row < board.length; row++) {
+			for (int column = 0; column < board[row].length; column++) {
+				board[row][column] = new JButton();
+			}
+		}
 	}
 
 	public void showMainMenu() {
@@ -115,6 +161,7 @@ public class GameView {
 	}
 
 	public void showSlidePuzzlePanel() {
+		setUpSlidePuzzlePanel();
 		frame.getContentPane().removeAll();
 		frame.add(slidePuzzlePanel);
 		frame.revalidate();
@@ -122,6 +169,7 @@ public class GameView {
 	}
 
 	public void showSudokuPanel() {
+		setUpSudokuPanel();
 		frame.getContentPane().removeAll();
 		frame.add(sudokuPanel);
 		frame.revalidate();
@@ -129,63 +177,34 @@ public class GameView {
 	}
 
 	public void showTicTacToePanel() {
+		setUpTicTacToePanel();
 		frame.getContentPane().removeAll();
 		frame.add(ticTacToePanel);
 		frame.revalidate();
 		frame.repaint();
 	}
 
-	public ArrayList<JButton> getDifficultyMenuButtons() {
-		ArrayList<JButton> buttons = new ArrayList<>();
-		for (Component component : difficultyMenuPanel.getComponents()) {
-			if (component instanceof JButton) {
-				buttons.add((JButton) component);
-			}
-		}
-		return buttons;
-	}
-
 	public ArrayList<JButton> getMainMenuButtons() {
 		ArrayList<JButton> buttons = new ArrayList<>();
 		for (Component component : mainMenuPanel.getComponents()) {
-			if (component instanceof JButton) {
+			if (component.getClass().getSimpleName().equals("JButton")) {
 				buttons.add((JButton) component);
 			}
 		}
 		return buttons;
 	}
 
-	public void setUpBoard(int rows, int columns) {
-		board = new JButton[rows][columns];
-		for (int row = 0; row < board.length; row++) {
-			for (int column = 0; column < board[row].length; column++) {
-				board[row][column] = new JButton();
+	public ArrayList<JButton> getDifficultyMenuButtons() {
+		ArrayList<JButton> buttons = new ArrayList<>();
+		for (Component component : difficultyMenuPanel.getComponents()) {
+			if (component.getClass().getSimpleName().equals("JButton")) {
+				buttons.add((JButton) component);
 			}
 		}
-		slidePuzzlePanel();
-		sudokuPanel();
-		ticTacToePanel();
+		return buttons;
 	}
 
-	public void placeButtons(JLabel title) {
-		int buttonWidth = (slidePuzzlePanel.getWidth() / board[0].length) - 10;
-		int buttonHeight = ((slidePuzzlePanel.getHeight() - title.getHeight() - 40) / board.length) - 10;
-
-		for (int row = 0; row < board.length; row++) {
-			for (int column = 0; column < board[row].length; column++) {
-				JButton square = board[row][column];
-				square.setSize(buttonWidth, buttonHeight);
-				if (row == 0 && column == 0) {
-					square.setLocation(5, title.getY() + title.getHeight() + 10);
-				} else if (row == 0) {
-					square.setLocation(board[row][column - 1].getX() + board[row][column - 1].getWidth() + 5, title.getY() + title.getHeight() + 10);
-				} else if (column == 0) {
-					square.setLocation(5, board[row - 1][column].getY() + board[row - 1][column].getHeight() + 5);
-				} else {
-					square.setLocation(board[row][column - 1].getX() + board[row][column - 1].getWidth() + 5, board[row - 1][column].getY() + board[row - 1][column].getHeight() + 5);
-				}
-				slidePuzzlePanel.add(square);
-			}
-		}
+	public JButton[][] getBoard() {
+		return board;
 	}
 }
