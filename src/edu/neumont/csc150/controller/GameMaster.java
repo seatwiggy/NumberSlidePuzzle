@@ -20,7 +20,7 @@ public class GameMaster {
 	private final ActionListener setGame = e -> {
 		switch (((JButton) e.getSource()).getText()) {
 			case "Number Slide Puzzle" -> {
-				currentGame = new SlidePuzzle();
+				currentGame = new NumberPuzzle();
 				ui.showDifficultyMenu();
 			}
 			case "Sudoku" -> {
