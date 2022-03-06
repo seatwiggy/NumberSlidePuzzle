@@ -21,6 +21,7 @@ public class NumberPuzzle implements IGame {
 		}
 		setUpBoard();
 		shuffle();
+		soutBoard();
 	}
 
 	public void setUpBoard() {
@@ -42,8 +43,9 @@ public class NumberPuzzle implements IGame {
 			for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
 				if (!(gameBoard.board[row][col] == num)) {
 					incorrectPieces++;
+				}else if(gameBoard.board[gameBoard.getNumberOfRows()-1][getBoard().getNumberOfColumns()-1]==0){
+					incorrectPieces--;
 				}
-				gameBoard.board[row][col] = num;
 				num++;
 			}
 		}
@@ -57,7 +59,7 @@ public class NumberPuzzle implements IGame {
 	/**
 	 * rearranges the values on the board so the game can be played
 	 */
-	public void shuffle() {
+	private void shuffle() {
 		for (int i = 0; i < 100; i++) {
 			for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
 				for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
@@ -107,4 +109,14 @@ public class NumberPuzzle implements IGame {
 		gameBoard.board[row1][col1] = gameBoard.board[row2][col2];
 		gameBoard.board[row2][col2] = temp;
 	}
+
+	public void soutBoard(){
+		for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
+			for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
+				System.out.print(gameBoard.board[row][col]);
+			}
+			System.out.println();
+		}
+	}
+
 }
