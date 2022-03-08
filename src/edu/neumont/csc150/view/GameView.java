@@ -9,6 +9,9 @@ public class GameView {
 	private final JFrame frame;
 	private final MainMenu mainMenuPanel;
 	private final DifficultyMenu difficultyMenuPanel;
+	private final EndMenu winMenuPanel;
+	private final EndMenu loseMenuPanel;
+	private final EndMenu tieMenuPanel;
 	private SlidePuzzlePanel slidePuzzlePanel;
 	private SudokuPanel sudokuPanel;
 	private TicTacToePanel ticTacToePanel;
@@ -23,6 +26,9 @@ public class GameView {
 
 		mainMenuPanel = new MainMenu(frame);
 		difficultyMenuPanel = new DifficultyMenu(frame);
+		winMenuPanel = new EndMenu(frame, "Congratulations, you win!");
+		loseMenuPanel = new EndMenu(frame, "Oops, you lost.");
+		tieMenuPanel = new EndMenu(frame, "There was a tie.");
 	}
 
 	public void initializeGamePanels() {
@@ -66,6 +72,27 @@ public class GameView {
 		frame.repaint();
 	}
 
+	public void showWinPanel() {
+		frame.getContentPane().removeAll();
+		frame.add(winMenuPanel);
+		frame.revalidate();
+		frame.repaint();
+	}
+
+	public void showLosePanel() {
+		frame.getContentPane().removeAll();
+		frame.add(loseMenuPanel);
+		frame.revalidate();
+		frame.repaint();
+	}
+
+	public void showTiePanel() {
+		frame.getContentPane().removeAll();
+		frame.add(tieMenuPanel);
+		frame.revalidate();
+		frame.repaint();
+	}
+
 	public SlidePuzzlePanel getSlidePuzzlePanel() {
 		return slidePuzzlePanel;
 	}
@@ -98,15 +125,15 @@ public class GameView {
 		return buttons;
 	}
 
-	public void showWinPanel() {
-
+	public EndMenu getWinMenuPanel() {
+		return winMenuPanel;
 	}
 
-	public void showLosePanel() {
-
+	public EndMenu getLoseMenuPanel() {
+		return loseMenuPanel;
 	}
 
-	public void showTiePanel() {
-
+	public EndMenu getTieMenuPanel() {
+		return tieMenuPanel;
 	}
 }

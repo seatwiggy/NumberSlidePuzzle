@@ -8,7 +8,7 @@ public class DifficultyMenu extends ViewPanel {
 	private final JButton hardButton;
 
 	DifficultyMenu(JFrame frame) {
-		setSize(frame.getWidth(), frame.getHeight());
+		super(frame);
 
 		setTitleLabel(new JLabel("Choose a difficulty", SwingConstants.CENTER));
 		getTitleLabel().setFont(GameView.font);

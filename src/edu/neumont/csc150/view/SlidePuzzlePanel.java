@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class SlidePuzzlePanel extends GamePanel {
 	SlidePuzzlePanel(JFrame frame) {
-		setSize(frame.getWidth(), frame.getHeight());
+		super(frame);
 
 		setTitleLabel(new JLabel("Number Slide Puzzle", SwingConstants.CENTER));
 		getTitleLabel().setFont(GameView.font);

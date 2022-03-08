@@ -2,7 +2,7 @@ package edu.neumont.csc150.models;
 
 import java.util.Random;
 
-public class NumberPuzzle implements IGame {
+public class SlidePuzzle implements IGame {
 	private Board gameBoard;
 
 	public void setUpGame(Difficulty difficulty) {
@@ -21,7 +21,6 @@ public class NumberPuzzle implements IGame {
 		}
 		setUpBoard();
 		shuffle();
-		printBoard();
 	}
 
 	public void setUpBoard() {
@@ -108,14 +107,5 @@ public class NumberPuzzle implements IGame {
 		int temp = gameBoard.board[row1][col1];
 		gameBoard.board[row1][col1] = gameBoard.board[row2][col2];
 		gameBoard.board[row2][col2] = temp;
-	}
-
-	public void printBoard(){
-		for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
-			for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
-				System.out.print(gameBoard.board[row][col]);
-			}
-			System.out.println();
-		}
 	}
 }

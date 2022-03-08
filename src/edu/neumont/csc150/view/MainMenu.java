@@ -8,7 +8,7 @@ public class MainMenu extends ViewPanel {
 	JButton ticTacToeButton;
 
 	MainMenu(JFrame frame) {
-		setSize(frame.getWidth(), frame.getHeight());
+		super(frame);
 
 		setTitleLabel(new JLabel("What game would you like to play?", SwingConstants.CENTER));
 		getTitleLabel().setFont(GameView.font);
