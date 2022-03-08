@@ -3,11 +3,10 @@ package edu.neumont.csc150.models;
 public class TicTacToe implements IGame {
 	private Board gameBoard;
 	/**
-	 * if true and playing against the bot the player has on, if true and playing against another person the person playing X has won
+	 * if true and playing against the bot the player has won, if true and playing against another person the person playing X has won
 	 */
 	private boolean playerWins = false;
 	private boolean tie = false;
-	private boolean isXsTurn= true;
 
 	@Override
 	public void setUpBoard() {
@@ -354,13 +353,5 @@ public class TicTacToe implements IGame {
 
 	public boolean isTie() {
 		return tie;
-	}
-
-	public boolean isXsTurn() {
-		return isXsTurn;
-	}
-
-	public void setXsTurn(boolean xsTurn) {
-		isXsTurn = xsTurn;
 	}
 }

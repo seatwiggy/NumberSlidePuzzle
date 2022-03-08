@@ -10,16 +10,13 @@ import java.awt.event.ActionListener;
 
 public class GameMaster {
 	private final GameView ui = new GameView();
-	private IGame currentGame;
-	private GamePanel currentGamePanel;
 	private final ActionListener sudokuInputListener = e -> {
 		JButton source = (JButton) e.getSource();
-		SudokuPanel sudokuPanel = (SudokuPanel) currentGamePanel;
-		sudokuPanel.setInputNumber(Integer.parseInt(source.getText()));
+		ui.getSudokuPanel().setInputNumber(Integer.parseInt(source.getText()));
 	};
+	private IGame currentGame;
+	private GamePanel currentGamePanel;
 	private final ActionListener sudokuListener = e -> {
-		Sudoku sudoku = (Sudoku) currentGame;
-		SudokuPanel sudokuPanel = (SudokuPanel) currentGamePanel;
 		int buttonRow = -1;
 		int buttonColumn = -1;
 		for (int row = 0; row < currentGamePanel.getBoard().length; row++) {
@@ -30,7 +27,11 @@ public class GameMaster {
 				}
 			}
 		}
-		currentGame.getBoard().getBoard()[buttonRow][buttonColumn] = sudokuPanel.getInputNumber();
+		currentGame.getBoard().getBoard()[buttonRow][buttonColumn] = ui.getSudokuPanel().getInputNumber();
+		updateNumberBoard();
+		if (currentGame.checkForWin()) {
+			ui.showWinPanel();
+		}
 	};
 	private final ActionListener ticTacToeListener = e -> {
 		TicTacToe ticTacToe = (TicTacToe) currentGame;
@@ -42,6 +43,20 @@ public class GameMaster {
 					buttonRow = row;
 					buttonColumn = column;
 				}
+			}
+		}
+		currentGame.getBoard().getBoard()[buttonRow][buttonColumn] = 1;
+		ticTacToe.botsTurn();
+		updateTicTacToeBoard();
+		if (currentGame.checkForWin()) {
+			if (ticTacToe.isPlayerWins()) {
+				ui.showWinPanel();
+			} else {
+				ui.showLosePanel();
+			}
+		} else {
+			if (ticTacToe.isTie()) {
+				ui.showTiePanel();
 			}
 		}
 	};
@@ -57,13 +72,13 @@ public class GameMaster {
 				}
 			}
 		}
-		if (buttonRow != 0 && numberPuzzle.getBoard().getBoard()[buttonRow - 1][buttonColumn] == 0) {
+		if (buttonRow != 0 && currentGame.getBoard().getBoard()[buttonRow - 1][buttonColumn] == 0) {
 			numberPuzzle.moveValues(buttonRow, buttonColumn, buttonRow - 1, buttonColumn);
-		} else if (buttonRow + 1 != numberPuzzle.getBoard().getBoard().length && numberPuzzle.getBoard().getBoard()[buttonRow + 1][buttonColumn] == 0) {
+		} else if (buttonRow + 1 != currentGame.getBoard().getBoard().length && currentGame.getBoard().getBoard()[buttonRow + 1][buttonColumn] == 0) {
 			numberPuzzle.moveValues(buttonRow, buttonColumn, buttonRow + 1, buttonColumn);
-		} else if (buttonColumn != 0 && numberPuzzle.getBoard().getBoard()[buttonRow][buttonColumn - 1] == 0) {
+		} else if (buttonColumn != 0 && currentGame.getBoard().getBoard()[buttonRow][buttonColumn - 1] == 0) {
 			numberPuzzle.moveValues(buttonRow, buttonColumn, buttonRow, buttonColumn - 1);
-		} else if (buttonColumn + 1 != numberPuzzle.getBoard().getBoard()[buttonRow].length && numberPuzzle.getBoard().getBoard()[buttonRow][buttonColumn + 1] == 0) {
+		} else if (buttonColumn + 1 != currentGame.getBoard().getBoard()[buttonRow].length && currentGame.getBoard().getBoard()[buttonRow][buttonColumn + 1] == 0) {
 			numberPuzzle.moveValues(buttonRow, buttonColumn, buttonRow, buttonColumn + 1);
 		}
 		updateNumberBoard();
@@ -161,8 +176,14 @@ public class GameMaster {
 			for (int column = 0; column < currentGamePanel.getBoard()[row].length; column++) {
 				switch (currentGame.getBoard().getBoard()[row][column]) {
 					case 0 -> currentGamePanel.getBoard()[row][column].setText("");
-					case 1 -> currentGamePanel.getBoard()[row][column].setText("X");
-					case 2 -> currentGamePanel.getBoard()[row][column].setText("O");
+					case 1 -> {
+						currentGamePanel.getBoard()[row][column].setText("X");
+						currentGamePanel.getBoard()[row][column].setEnabled(false);
+					}
+					case 2 -> {
+						currentGamePanel.getBoard()[row][column].setText("O");
+						currentGamePanel.getBoard()[row][column].setEnabled(false);
+					}
 				}
 			}
 		}
