@@ -14,6 +14,7 @@ public class GameMaster {
 		JButton source = (JButton) e.getSource();
 		ui.getSudokuPanel().setInputNumber(Integer.parseInt(source.getText()));
 	};
+	private final ActionListener playAgainListener = e -> ui.showMainMenu();
 	private IGame currentGame;
 	private GamePanel currentGamePanel;
 	private final ActionListener sudokuListener = e -> {
@@ -123,7 +124,6 @@ public class GameMaster {
 			}
 		}
 	};
-	private final ActionListener playAgainListener = e -> ui.showMainMenu();
 
 	public void run() {
 		for (JButton button : ui.getMainMenuButtons()) {
