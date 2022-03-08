@@ -21,7 +21,7 @@ public class NumberPuzzle implements IGame {
 		}
 		setUpBoard();
 		shuffle();
-		soutBoard();
+		printBoard();
 	}
 
 	public void setUpBoard() {
@@ -110,7 +110,7 @@ public class NumberPuzzle implements IGame {
 		gameBoard.board[row2][col2] = temp;
 	}
 
-	public void soutBoard(){
+	public void printBoard(){
 		for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
 			for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
 				System.out.print(gameBoard.board[row][col]);
@@ -118,5 +118,4 @@ public class NumberPuzzle implements IGame {
 			System.out.println();
 		}
 	}
-
 }
