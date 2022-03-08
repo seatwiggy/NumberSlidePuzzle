@@ -101,4 +101,12 @@ public class GameView {
 	public void showWinPanel() {
 
 	}
+
+	public void showLosePanel() {
+
+	}
+
+	public void showTiePanel() {
+
+	}
 }
