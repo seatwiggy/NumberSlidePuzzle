@@ -1,27 +1,28 @@
 package edu.neumont.csc150.models;
 
+
 public class Board {
-	protected int[][] board;
-	private Difficulty difficulty;
-	private int size;
+    protected int[][] board;
+    private int numberOfRows;
+    private int numberOfColumns;
 
-	public Board(Difficulty difficulty) {
-		setDifficulty(difficulty);
-	}
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
 
-	public Difficulty getDifficulty() {
-		return difficulty;
-	}
+    public void setNumberOfRows(int numberOfRows) {
+        this.numberOfRows = numberOfRows;
+    }
 
-	public void setDifficulty(Difficulty difficulty) {
-		this.difficulty = difficulty;
-	}
+    public int getNumberOfColumns() {
+        return numberOfColumns;
+    }
 
-	public int getSize() {
-		return size;
-	}
+    public void setGetNumberOfColumns(int getNumberOfColumns) {
+        this.numberOfColumns = getNumberOfColumns;
+    }
 
-	public void setSize(int size) {
-		this.size = size;
-	}
+    public int[][] getBoard() {
+        return board;
+    }
 }
