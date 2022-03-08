@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class TicTacToePanel extends GamePanel {
 	TicTacToePanel(JFrame frame) {
-		setSize(frame.getWidth(), frame.getHeight());
+		super(frame);
 
 		setTitleLabel(new JLabel("Tic Tac Toe", SwingConstants.CENTER));
 		getTitleLabel().setFont(GameView.font);

@@ -16,7 +16,7 @@ public class SudokuPanel extends GamePanel {
 	private int inputNumber = 0;
 
 	SudokuPanel(JFrame frame) {
-		setSize(frame.getWidth(), frame.getHeight());
+		super(frame);
 
 		setTitleLabel(new JLabel("Sudoku", SwingConstants.CENTER));
 		getTitleLabel().setFont(GameView.font);

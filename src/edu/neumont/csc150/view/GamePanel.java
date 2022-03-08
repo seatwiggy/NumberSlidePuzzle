@@ -5,6 +5,10 @@ import javax.swing.*;
 public abstract class GamePanel extends ViewPanel {
 	private JButton[][] board;
 
+	GamePanel(JFrame frame) {
+		super(frame);
+	}
+
 	public void initializeBoard(int rows, int columns) {
 		board = new JButton[rows][columns];
 		for (int row = 0; row < board.length; row++) {
@@ -52,9 +56,5 @@ public abstract class GamePanel extends ViewPanel {
 
 	public JButton[][] getBoard() {
 		return board;
-	}
-
-	public void setBoard(JButton[][] board) {
-		this.board = board;
 	}
 }

@@ -60,8 +60,8 @@ public class GameMaster {
 			}
 		}
 	};
-	private final ActionListener numberPuzzleListener = e -> {
-		NumberPuzzle numberPuzzle = (NumberPuzzle) currentGame;
+	private final ActionListener slidePuzzleListener = e -> {
+		SlidePuzzle slidePuzzle = (SlidePuzzle) currentGame;
 		int buttonRow = -1;
 		int buttonColumn = -1;
 		for (int row = 0; row < currentGamePanel.getBoard().length; row++) {
@@ -73,13 +73,13 @@ public class GameMaster {
 			}
 		}
 		if (buttonRow != 0 && currentGame.getBoard().getBoard()[buttonRow - 1][buttonColumn] == 0) {
-			numberPuzzle.moveValues(buttonRow, buttonColumn, buttonRow - 1, buttonColumn);
+			slidePuzzle.moveValues(buttonRow, buttonColumn, buttonRow - 1, buttonColumn);
 		} else if (buttonRow + 1 != currentGame.getBoard().getBoard().length && currentGame.getBoard().getBoard()[buttonRow + 1][buttonColumn] == 0) {
-			numberPuzzle.moveValues(buttonRow, buttonColumn, buttonRow + 1, buttonColumn);
+			slidePuzzle.moveValues(buttonRow, buttonColumn, buttonRow + 1, buttonColumn);
 		} else if (buttonColumn != 0 && currentGame.getBoard().getBoard()[buttonRow][buttonColumn - 1] == 0) {
-			numberPuzzle.moveValues(buttonRow, buttonColumn, buttonRow, buttonColumn - 1);
+			slidePuzzle.moveValues(buttonRow, buttonColumn, buttonRow, buttonColumn - 1);
 		} else if (buttonColumn + 1 != currentGame.getBoard().getBoard()[buttonRow].length && currentGame.getBoard().getBoard()[buttonRow][buttonColumn + 1] == 0) {
-			numberPuzzle.moveValues(buttonRow, buttonColumn, buttonRow, buttonColumn + 1);
+			slidePuzzle.moveValues(buttonRow, buttonColumn, buttonRow, buttonColumn + 1);
 		}
 		updateNumberBoard();
 		if (currentGame.checkForWin()) {
@@ -91,7 +91,7 @@ public class GameMaster {
 		currentGamePanel.initializeBoard(currentGame.getBoard().getNumberOfRows(), currentGame.getBoard().getNumberOfColumns());
 		currentGamePanel.placeButtons();
 		switch (currentGame.getClass().getSimpleName()) {
-			case "NumberPuzzle" -> ui.showSlidePuzzlePanel();
+			case "SlidePuzzle" -> ui.showSlidePuzzlePanel();
 			case "Sudoku" -> ui.showSudokuPanel();
 		}
 		runGame();
@@ -100,7 +100,7 @@ public class GameMaster {
 		ui.initializeGamePanels();
 		switch (((JButton) e.getSource()).getText()) {
 			case "Number Slide Puzzle" -> {
-				currentGame = new NumberPuzzle();
+				currentGame = new SlidePuzzle();
 				currentGamePanel = ui.getSlidePuzzlePanel();
 			}
 			case "Sudoku" -> {
@@ -113,7 +113,7 @@ public class GameMaster {
 			}
 		}
 		switch (currentGame.getClass().getSimpleName()) {
-			case "NumberPuzzle", "Sudoku" -> ui.showDifficultyMenu();
+			case "SlidePuzzle", "Sudoku" -> ui.showDifficultyMenu();
 			case "TicTacToe" -> {
 				currentGame.setUpGame(null);
 				currentGamePanel.initializeBoard(currentGame.getBoard().getNumberOfRows(), currentGame.getBoard().getNumberOfColumns());
@@ -123,6 +123,7 @@ public class GameMaster {
 			}
 		}
 	};
+	private final ActionListener playAgainListener = e -> ui.showMainMenu();
 
 	public void run() {
 		for (JButton button : ui.getMainMenuButtons()) {
@@ -131,16 +132,20 @@ public class GameMaster {
 		for (JButton button : ui.getDifficultyMenuButtons()) {
 			button.addActionListener(difficultyMenuListener);
 		}
+		ui.getWinMenuPanel().getButton().addActionListener(playAgainListener);
+		ui.getLoseMenuPanel().getButton().addActionListener(playAgainListener);
+		ui.getTieMenuPanel().getButton().addActionListener(playAgainListener);
+
 		ui.showMainMenu();
 	}
 
 	private void runGame() {
 		switch (currentGame.getClass().getSimpleName()) {
-			case "NumberPuzzle" -> {
+			case "SlidePuzzle" -> {
 				updateNumberBoard();
 				for (JButton[] jButtons : currentGamePanel.getBoard()) {
 					for (JButton jButton : jButtons) {
-						jButton.addActionListener(numberPuzzleListener);
+						jButton.addActionListener(slidePuzzleListener);
 					}
 				}
 			}

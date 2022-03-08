@@ -7,7 +7,6 @@ public class TicTacToe implements IGame {
      */
     private boolean playerWins = false;
     private boolean tie = false;
-    private boolean isXsTurn = true;
 
     @Override
     public void setUpBoard() {
@@ -399,13 +398,5 @@ public class TicTacToe implements IGame {
 
     public boolean isTie() {
         return tie;
-    }
-
-    public boolean isXsTurn() {
-        return isXsTurn;
-    }
-
-    public void setXsTurn(boolean xsTurn) {
-        isXsTurn = xsTurn;
     }
 }

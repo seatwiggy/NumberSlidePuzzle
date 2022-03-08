@@ -5,7 +5,8 @@ import javax.swing.*;
 public abstract class ViewPanel extends JPanel {
 	private JLabel titleLabel;
 
-	ViewPanel() {
+	ViewPanel(JFrame frame) {
+		setSize(frame.getWidth(), frame.getHeight());
 		setLayout(null);
 	}
 
