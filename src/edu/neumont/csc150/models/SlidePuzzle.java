@@ -60,7 +60,7 @@ public class SlidePuzzle implements IGame {
 	 * rearranges the values on the board so the game can be played
 	 */
 	private void shuffle() {
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 500; i++) {
 			for (int row = 0; row < gameBoard.getNumberOfRows(); row++) {
 				for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
 					if (gameBoard.board[row][col] == 0) {
