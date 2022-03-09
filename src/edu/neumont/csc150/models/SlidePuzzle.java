@@ -42,11 +42,12 @@ public class SlidePuzzle implements IGame {
 			for (int col = 0; col < gameBoard.getNumberOfColumns(); col++) {
 				if (!(gameBoard.board[row][col] == num)) {
 					incorrectPieces++;
-				}else if(gameBoard.board[gameBoard.getNumberOfRows()-1][getBoard().getNumberOfColumns()-1]==0){
-					incorrectPieces--;
 				}
 				num++;
 			}
+		}
+		if(gameBoard.board[gameBoard.getNumberOfRows()-1][getBoard().getNumberOfColumns()-1]==0){
+			incorrectPieces--;
 		}
 		return incorrectPieces == 0;
 	}
