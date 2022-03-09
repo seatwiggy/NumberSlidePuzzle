@@ -3,7 +3,7 @@ package edu.neumont.csc150.view;
 import javax.swing.*;
 
 public class EndMenu extends ViewPanel {
-	JButton button;
+	private JButton button;
 
 	EndMenu(JFrame frame) {
 		super(frame);
