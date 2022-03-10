@@ -3,9 +3,9 @@ package edu.neumont.csc150.view;
 import javax.swing.*;
 
 public class MainMenu extends ViewPanel {
-	JButton slidePuzzleButton;
-	JButton sudokuButton;
-	JButton ticTacToeButton;
+	private final JButton slidePuzzleButton;
+	private final JButton sudokuButton;
+	private final JButton ticTacToeButton;
 
 	MainMenu(JFrame frame) {
 		super(frame);

@@ -3,13 +3,13 @@ package edu.neumont.csc150.models;
 import java.util.Random;
 
 public class Sudoku implements IGame {
-    Random randy = new Random();
+    private Random randy = new Random();
     private Board gameBoard;
     private Board solution;
     /**
      * the number of numbers that the sudoku board begins with, it is determined by the difficulty selected
      */
-    int startingAmountOfNumbers;
+    private int startingAmountOfNumbers;
 
     @Override
     public void setUpBoard() {
@@ -54,16 +54,6 @@ public class Sudoku implements IGame {
         return checkForWin == 0;
     }
 
-    /**
-     * puts a number into the game board
-     * @param row row that the number should be placed in
-     * @param col column that the number should be placed in
-     * @param value number to be placed
-     */
-    public void placeNum(int row, int col, int value){
-        gameBoard.board[row][col] = value;
-    }
-
     public Board getBoard() {
         return gameBoard;
     }
@@ -71,7 +61,7 @@ public class Sudoku implements IGame {
     /**
      * makes a Sudoku board with random numbers in it, could be unsolvable, run the solve method to check
      */
-    public void generateSudokuBoard() {
+    private void generateSudokuBoard() {
         for (int i = 0; i < gameBoard.board.length; i++) {
             for (int j = 0; j < gameBoard.board.length; j++) {
                 gameBoard.board[i][j] = 0;
@@ -187,7 +177,7 @@ public class Sudoku implements IGame {
      *
      * @return returns true if the board could be solved
      */
-    public boolean solve() {
+    private boolean solve() {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 if (solution.board[row][col] == 0) {
