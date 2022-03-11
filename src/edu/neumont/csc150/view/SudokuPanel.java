@@ -43,7 +43,7 @@ public class SudokuPanel extends GamePanel {
 		add(inputThree);
 
 		inputFour = new JButton("4");
-		inputFour.setSize(((getWidth() - 10) / 9) - 15, ((getWidth() - 10) / 9) - 10);
+		inputFour.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 10);
 		inputFour.setLocation(inputThree.getX() + inputThree.getWidth() + 5, getHeight() - inputFour.getHeight() - 40);
 		add(inputFour);
 
