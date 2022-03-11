@@ -28,47 +28,47 @@ public class SudokuPanel extends GamePanel {
 	@Override
 	public void placeButtons() {
 		inputOne = new JButton("1");
-		inputOne.setSize(((getWidth() - 10) / 9) - 15, ((getWidth() - 10) / 9) - 10);
+		inputOne.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 35);
 		inputOne.setLocation(5, getHeight() - inputOne.getHeight() - 40);
 		add(inputOne);
 
 		inputTwo = new JButton("2");
-		inputTwo.setSize(((getWidth() - 10) / 9) - 15, ((getWidth() - 10) / 9) - 10);
+		inputTwo.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 35);
 		inputTwo.setLocation(inputOne.getX() + inputOne.getWidth() + 5, getHeight() - inputTwo.getHeight() - 40);
 		add(inputTwo);
 
 		inputThree = new JButton("3");
-		inputThree.setSize(((getWidth() - 10) / 9) - 15, ((getWidth() - 10) / 9) - 10);
+		inputThree.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 35);
 		inputThree.setLocation(inputTwo.getX() + inputTwo.getWidth() + 5, getHeight() - inputThree.getHeight() - 40);
 		add(inputThree);
 
 		inputFour = new JButton("4");
-		inputFour.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 10);
+		inputFour.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 35);
 		inputFour.setLocation(inputThree.getX() + inputThree.getWidth() + 5, getHeight() - inputFour.getHeight() - 40);
 		add(inputFour);
 
 		inputFive = new JButton("5");
-		inputFive.setSize(((getWidth() - 10) / 9) - 15, ((getWidth() - 10) / 9) - 10);
+		inputFive.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 35);
 		inputFive.setLocation(inputFour.getX() + inputFour.getWidth() + 5, getHeight() - inputFive.getHeight() - 40);
 		add(inputFive);
 
 		inputSix = new JButton("6");
-		inputSix.setSize(((getWidth() - 10) / 9) - 15, ((getWidth() - 10) / 9) - 10);
+		inputSix.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 35);
 		inputSix.setLocation(inputFive.getX() + inputFive.getWidth() + 5, getHeight() - inputSix.getHeight() - 40);
 		add(inputSix);
 
 		inputSeven = new JButton("7");
-		inputSeven.setSize(((getWidth() - 10) / 9) - 15, ((getWidth() - 10) / 9) - 10);
+		inputSeven.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 35);
 		inputSeven.setLocation(inputSix.getX() + inputSix.getWidth() + 5, getHeight() - inputSeven.getHeight() - 40);
 		add(inputSeven);
 
 		inputEight = new JButton("8");
-		inputEight.setSize(((getWidth() - 10) / 9) - 15, ((getWidth() - 10) / 9) - 10);
+		inputEight.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 35);
 		inputEight.setLocation(inputSeven.getX() + inputSeven.getWidth() + 5, getHeight() - inputEight.getHeight() - 40);
 		add(inputEight);
 
 		inputNine = new JButton("9");
-		inputNine.setSize(((getWidth() - 10) / 9) - 15, ((getWidth() - 10) / 9) - 10);
+		inputNine.setSize(((getWidth() - 10) / 9) - 15, ((getHeight() - 10) / 9) - 35);
 		inputNine.setLocation(inputEight.getX() + inputEight.getWidth() + 5, getHeight() - inputNine.getHeight() - 40);
 		add(inputNine);
 
